@@ -147,29 +147,27 @@ Spellcaster.prototype.spendMana = function (cost){
    */
 Spellcaster.prototype.invoke = function(spell, target){
   if(spell === undefined || spell === null){
-  return false;
+    return false;
   }
   if(spell instanceof DamageSpell && target instanceof Spellcaster){
     if(this.spendMana(spell.cost)){
-      if (target instanceof Spellcaster){
-        target.inflictDamage(spell.damage);
+      target.inflictDamage(spell.damage);
+      return true;
+    }else{
+      return false;
+    }
+    }
+    if(spell instanceof Spell && !(spell instanceof DamageSpell) && !(target instanceof Spellcaster)){
+      if(this.spendMana(spell.cost)){
         return true;
       }else{
         return false;
-      }
-    }else{
-       return false;
     }
-  }else if(spell instanceof Spell && !(spell instanceof DamageSpell) && !(target instanceof Spellcaster)){
-    if(this.spendMana(spell.cost)){
-       return true;
-    }else{
-       return false;
-    }
-  }else{
+      }else{
     return false;
   }
 };
+
 
 
 

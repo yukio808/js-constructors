@@ -167,19 +167,3 @@ Spellcaster.prototype.invoke = function(spell, target){
     return false;
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

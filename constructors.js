@@ -80,7 +80,7 @@ function Spellcaster (name, health, mana){
    this.name = name;
    this.health = health;
    this.mana = mana;
-   this.isAlive= true;
+   this.isAlive = true;
 }
 
   /**
@@ -97,7 +97,7 @@ Spellcaster.prototype.inflictDamage = function(damage){
    this.health = this.health - damage;
    if(this.health <= 0){
       this.health = 0;
-      this.isAlive=false;
+      this.isAlive = false;
    }
 };
 
@@ -156,14 +156,14 @@ Spellcaster.prototype.invoke = function(spell, target){
     }else{
       return false;
     }
+  }
+  if(spell instanceof Spell && !(spell instanceof DamageSpell) && !(target instanceof Spellcaster)){
+    if(this.spendMana(spell.cost)){
+      return true;
+    }else{
+      return false;
     }
-    if(spell instanceof Spell && !(spell instanceof DamageSpell) && !(target instanceof Spellcaster)){
-      if(this.spendMana(spell.cost)){
-        return true;
-      }else{
-        return false;
-    }
-      }else{
+  }else{
     return false;
   }
 };
